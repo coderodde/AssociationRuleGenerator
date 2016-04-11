@@ -261,7 +261,7 @@ public class AprioriFrequentItemsetGenerator<I> {
         List<Set<I>> frequentItemsetList = new ArrayList<>();
 
         for (Map.Entry<I, Integer> entry : map.entrySet()) {
-            if (1.0 * entry.getValue() / map.size() >= minimumSupport) {
+            if (1.0 * entry.getValue() / itemsetList.size() >= minimumSupport) {
                 Set<I> itemset = new HashSet<>(1);
                 itemset.add(entry.getKey());
                 frequentItemsetList.add(itemset);

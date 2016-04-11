@@ -64,7 +64,6 @@ public class AssociationRuleGenerator<I> {
                                           double minimumConfidence,
                                           Set<AssociationRule<I>> collector) {
         if (ruleSet.isEmpty()) {
-            System.out.println("Rule set is empty in generateAssociationRules.");
             return;
         }
         

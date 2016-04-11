@@ -31,7 +31,7 @@ public class Demo {
         itemsetList.add(new HashSet<>(Arrays.asList("b", "c", "e")));
 
         long startTime = System.nanoTime();
-        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.0);
+        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.1);
         long endTime = System.nanoTime();
         
         int i = 1;
@@ -51,7 +51,7 @@ public class Demo {
         startTime = System.nanoTime();
         List<AssociationRule<String>> associationRuleList = 
                 new AssociationRuleGenerator<String>()
-                        .mineAssociationRules(data, 0.0);
+                        .mineAssociationRules(data, 0.3);
         endTime = System.nanoTime();
         
         i = 1;
