@@ -110,14 +110,14 @@ public class AssociationRuleGenerator<I> {
         
         // For each rule ...
         for (AssociationRule<I> rule : ruleSet) {
+            antecedent.clear();
+            consequent.clear();
+            antecedent.addAll(rule.getAntecedent());
+            consequent.addAll(rule.getConsequent());
+            
             // ... move one item from its antecedent to its consequnt.
             for (I item : rule.getAntecedent()) {
-                antecedent.clear();
-                antecedent.addAll(rule.getAntecedent());
                 antecedent.remove(item);
-                
-                consequent.clear();
-                consequent.addAll(rule.getConsequent());
                 consequent.add(item);
                 
                 int antecedentSupportCount = data.getSupportCountMap()
@@ -129,6 +129,9 @@ public class AssociationRuleGenerator<I> {
                                 itemsetSupportCount / antecedentSupportCount);
                 
                 output.add(newRule);
+                
+                antecedent.add(item);
+                consequent.remove(item);
             }
         }
         
@@ -148,14 +151,11 @@ public class AssociationRuleGenerator<I> {
         Set<AssociationRule<I>> basicAssociationRuleSet =
                 new HashSet<>(itemset.size());
         
-        Set<I> antecedent = new HashSet<>(itemset.size());
+        Set<I> antecedent = new HashSet<>(itemset);
         Set<I> consequent = new HashSet<>(1);
         
         for (I item : itemset) {
-            antecedent.clear();
-            antecedent.addAll(itemset);
             antecedent.remove(item);
-            consequent.clear();
             consequent.add(item);
             
             int itemsetSupportCount = data.getSupportCountMap().get(itemset);
@@ -168,6 +168,8 @@ public class AssociationRuleGenerator<I> {
             basicAssociationRuleSet.add(new AssociationRule(antecedent, 
                                                             consequent,
                                                             confidence));
+            antecedent.add(item);
+            consequent.remove(item);
         }
         
         return basicAssociationRuleSet;

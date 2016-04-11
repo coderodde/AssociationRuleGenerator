@@ -31,7 +31,7 @@ public class Demo {
         itemsetList.add(new HashSet<>(Arrays.asList("b", "c", "e")));
 
         long startTime = System.nanoTime();
-        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.2);
+        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.0);
         long endTime = System.nanoTime();
         
         int i = 1;

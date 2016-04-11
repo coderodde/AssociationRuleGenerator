@@ -70,8 +70,4 @@ public class AssociationRule<I> {
         return antecedent.equals(other.antecedent) &&
                consequent.equals(other.consequent);
     }
-    
-    void setConfidence(double confidence) {
-        this.confidence = confidence;
-    }
 }
